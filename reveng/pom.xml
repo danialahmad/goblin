@@ -192,26 +192,26 @@
 									classpathref="maven.runtime.classpath" />
 								<!-- classpathref="maven.runtime.classpath" -->
 								<delete>
-									<fileset dir="../src/main/java/com/goblin/kemas/model/entity"
+									<fileset dir="../src/main/java/com/fourninja/goblin/model/entity"
 										includes="*.*" />
 									
 								</delete>
 								<hibernatetool>
 									<jdbcconfiguration configurationfile="hibernate.cfg.xml"
-										packagename="com.goblin.kemas.model.entity" revengfile="hibernate.reveng.xml" />
+										packagename="com.fourninja.goblin.model.entity" revengfile="hibernate.reveng.xml" />
 									<hbm2java jdk5="true" ejb3="true" destdir="../src/main/java" />
 								</hibernatetool>
 								<java classname="com.gen.entity.ActionRemoveComments"
 									classpathref="maven.runtime.classpath">
-									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+									<arg value="../src/main/java/com/fourninja/goblin/model/entity" />
 								</java>
 								<java classname="com.gen.entity.ActionTypeYesNo"
 									classpathref="maven.runtime.classpath">
-									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+									<arg value="../src/main/java/com/fourninja/goblin/model/entity" />
 								</java>
 								<java classname="com.gen.entity.ActionTypeTrueFalse"
 									classpathref="maven.runtime.classpath">
-									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+									<arg value="../src/main/java/com/fourninja/goblin/model/entity" />
 								</java>
 								<echo>Compile from ${compile_classpath}</echo>
 								<echo>Runtime from ${runtime_classpath}</echo>
@@ -234,12 +234,12 @@
 								
 								<java classname="com.gen.entity.CreateRepositoryFiles"
 									classpathref="project.class.path">
-									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+									<arg value="../src/main/java/com/fourninja/goblin/model/entity" />
 									<arg value="../src/main/java" />
 								</java>
 								
 								<!-- APT based code generation -->
-								<javac srcdir="../src/main/java/com/goblin/kemas/model/entity"
+								<javac srcdir="../src/main/java/com/fourninja/goblin/model/entity"
 									classpathref="maven.runtime.classpath" includeantruntime="false">
 									<compilerarg value="-proc:only" />
 									<compilerarg value="-processor" />
