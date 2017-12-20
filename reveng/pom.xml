@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+<!-- 	<parent> -->
+<!--         <groupId>com.score</groupId> -->
+<!--         <artifactId>ymagsys</artifactId> -->
+<!--         <version>1.0.0</version> -->
+<!--     </parent> -->
+	<groupId>reveng</groupId>
+	<artifactId>reveng</artifactId>
+	<version>1.0.0</version>
+	<properties>
+		<warName>eravett</warName>
+		<java-version>1.8</java-version>
+		<org.springframework-version>4.2.3.RELEASE</org.springframework-version>
+		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+		<querydsl.version>3.6.9</querydsl.version>
+		<org.aspectj-version>1.8.6</org.aspectj-version>
+		<org.slf4j-version>1.7.12</org.slf4j-version>
+		<hibernate.version>4.3.11.Final</hibernate.version>
+		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<cargo.servlet.port>58080</cargo.servlet.port>
+		<cargo.tomcat.ajp.port>58009</cargo.tomcat.ajp.port>
+		<surefire.version>2.18.1</surefire.version>
+		<failsafe.version>2.18.1</failsafe.version>
+		<activiti-version>5.18.0</activiti-version>
+	</properties>
+	<dependencies>
+
+		<!-- Database conectivity -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1207</version>
+		</dependency>
+
+		<!-- ORM -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>net.sf.ehcache</groupId>
+					<artifactId>ehcache-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-tools</artifactId>
+			<version>4.3.1.Final</version>
+		</dependency>
+
+		<!-- DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.6</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Spring Data -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.9.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.11.1.RELEASE</version>
+		</dependency>
+
+		<!-- Query DSL -->
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
+			<type>jar</type>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.codemodel</groupId>
+			<artifactId>codemodel</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<configuration>
+							<target>
+								
+								<property name="compile_classpath" refid="maven.compile.classpath" />
+								<property name="runtime_classpath" refid="maven.runtime.classpath" />
+								<property name="test_classpath" refid="maven.test.classpath" />
+								<property name="plugin_classpath" refid="maven.plugin.classpath" />
+								
+								<path id="project.class.path">
+									<pathelement location="../target/classes/" />
+									<pathelement path="${runtime_classpath}" />
+								</path>
+								
+								<path id="project.code">
+									<pathelement location="../src/main/java" />
+									<pathelement path="${runtime_classpath}" />
+									<pathelement location="../target/classes/" />
+								</path>
+								
+								<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"
+									classpathref="maven.runtime.classpath" />
+								<!-- classpathref="maven.runtime.classpath" -->
+								<delete>
+									<fileset dir="../src/main/java/com/goblin/kemas/model/entity"
+										includes="*.*" />
+									
+								</delete>
+								<hibernatetool>
+									<jdbcconfiguration configurationfile="hibernate.cfg.xml"
+										packagename="com.goblin.kemas.model.entity" revengfile="hibernate.reveng.xml" />
+									<hbm2java jdk5="true" ejb3="true" destdir="../src/main/java" />
+								</hibernatetool>
+								<java classname="com.gen.entity.ActionRemoveComments"
+									classpathref="maven.runtime.classpath">
+									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+								</java>
+								<java classname="com.gen.entity.ActionTypeYesNo"
+									classpathref="maven.runtime.classpath">
+									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+								</java>
+								<java classname="com.gen.entity.ActionTypeTrueFalse"
+									classpathref="maven.runtime.classpath">
+									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+								</java>
+								<echo>Compile from ${compile_classpath}</echo>
+								<echo>Runtime from ${runtime_classpath}</echo>
+								
+								
+								
+								<javac destdir="../target/classes" srcdir="." 
+									classpathref="maven.runtime.classpath" includeantruntime="true">
+						            <compilerarg value="-Xlint:unchecked"/>
+						            <src path="../src/main/java"/>
+						            <classpath path="maven.runtime.classpath" />
+						        </javac>
+								
+<!-- 								<javac destdir="../target/classes" srcdir="../src/main/java/com/score/emed/model/entity"  -->
+<!-- 									classpathref="maven.runtime.classpath" includeantruntime="true"> -->
+<!-- 						            <compilerarg value="-Xlint:unchecked"/> -->
+<!-- 						            <src path="../src/main/java/com/score/emed/model/entity"/> -->
+<!-- 						            <classpath path="maven.runtime.classpath" /> -->
+<!-- 						        </javac> -->
+								
+								<java classname="com.gen.entity.CreateRepositoryFiles"
+									classpathref="project.class.path">
+									<arg value="../src/main/java/com/goblin/kemas/model/entity" />
+									<arg value="../src/main/java" />
+								</java>
+								
+								<!-- APT based code generation -->
+								<javac srcdir="../src/main/java/com/goblin/kemas/model/entity"
+									classpathref="maven.runtime.classpath" includeantruntime="false">
+									<compilerarg value="-proc:only" />
+									<compilerarg value="-processor" />
+									<compilerarg value="com.mysema.query.apt.jpa.JPAAnnotationProcessor" />
+									<compilerarg value="-s" />
+									<compilerarg value="../src/main/java" />
+								</javac>
+
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.sun</groupId>
+						<artifactId>tools</artifactId>
+						<version>1.7.0</version>
+						<scope>system</scope>
+						<systemPath>${java.home}/../lib/tools.jar</systemPath>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,10 @@
+spring:
+    profiles:
+        active: development
+    datasource:
+        initialize: true
+
+jwt:
+   header: Authorization
+   secret: mySecret
+   expiration: 604800

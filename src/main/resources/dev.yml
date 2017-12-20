@@ -1,0 +1,9 @@
+db:
+  username: goblin
+  password: goblin123
+  url: jdbc:postgresql://192.168.56.103:5432/goblindb
+  driverClassName: org.postgresql.Driver
+  dialect: org.hibernate.dialect.PostgresPlusDialect
+
+persistence:
+  unit: yPersistence

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering 
+  SYSTEM "http://www.hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="INTEGER" hibernate-type="java.lang.Long" />
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer" />
+		<sql-type jdbc-type="CHAR" hibernate-type="java.lang.String" />
+		<sql-type jdbc-type="OTHER" hibernate-type="java.sql.Timestamp" />
+	</type-mapping>
+	
+	<table-filter match-schema="public" match-name=".*"
+		exclude="false" />
+	
+
+
+
+</hibernate-reverse-engineering>
