@@ -1,4 +1,4 @@
-package com.goblin.kemas;
+package com.fourninja.goblin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
