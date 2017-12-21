@@ -20,11 +20,11 @@ import com.sun.codemodel.JMod;
 
 public class CreateRepositoryFiles {
 	
-	private static final String REPOSITORY_PACKAGE = "com.goblin.kemas.model.repository.";
-	private static final String REPOSITORY_PATH = "com/goblin/kemas/model/repository/";
-	private static final String PACKAGE_NAME = "com.goblin.kemas.model.repository";
+	private static final String REPOSITORY_PACKAGE = "com.fourninja.goblin.model.repository.";
+	private static final String REPOSITORY_PATH = "com/fourninja/goblin/model/repository/";
+	private static final String PACKAGE_NAME = "com.fourninja.goblin.model.repository";
 	private static final String PARENT_CLASS = "org.springframework.data.jpa.repository.JpaRepository";
-	private static final String ENTITY_PACKAGE = "com.goblin.kemas.model.entity.";
+	private static final String ENTITY_PACKAGE = "com.fourninja.goblin.model.entity.";
 	
     public static void main(String[] args) throws ClassNotFoundException, JClassAlreadyExistsException{
 		

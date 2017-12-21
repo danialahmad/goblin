@@ -20,10 +20,10 @@ import org.apache.commons.io.FilenameUtils;
 
 public class CreateFileTest {
 	private static final String LOCATION = "../../../../../../../../src/test/java";
-	private static final String PACKAGE_NAME = "com.goblin.kemas.service.generic";
-	private static final String PARENT_CLASS = "com.goblin.kemas.service.generic.GenericService";
-	private static final String ENTITY_PACKAGE = "com.goblin.kemas.model.entity.";
-	private static final String REPOSITORY_PACKAGE = "com.goblin.kemas.model.repository.";
+	private static final String PACKAGE_NAME = "com.fourninja.goblin.service.generic";
+	private static final String PARENT_CLASS = "com.fourninja.goblin.service.generic.GenericService";
+	private static final String ENTITY_PACKAGE = "com.fourninja.goblin.model.entity.";
+	private static final String REPOSITORY_PACKAGE = "com.fourninja.goblin.model.repository.";
 	private static final String SERVICE_ANNOTATION = "org.springframework.stereotype.Service";
 	private static final String AUTOWIRED_ANNOTATION = "org.springframework.beans.factory.annotation.Autowired";
 

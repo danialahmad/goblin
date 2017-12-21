@@ -12,6 +12,11 @@
 	<table-filter match-schema="public" match-name=".*"
 		exclude="false" />
 	
+	<table schema="public" name="product">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
 
 
 
