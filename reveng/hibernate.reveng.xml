@@ -12,7 +12,47 @@
 	<table-filter match-schema="public" match-name=".*"
 		exclude="false" />
 	
-
+	<table schema="public" name="product">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="product_type">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="agent">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="address">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="country">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="state">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
+	
+	<table schema="public" name="agent_type">
+		<primary-key>
+			<generator class="identity" />
+		</primary-key>
+	</table>
 
 
 </hibernate-reverse-engineering>
