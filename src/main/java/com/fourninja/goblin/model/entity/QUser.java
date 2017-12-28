@@ -7,6 +7,7 @@ import com.mysema.query.types.path.*;
 import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
 import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
@@ -18,6 +19,8 @@ public class QUser extends EntityPathBase<User> {
     private static final long serialVersionUID = 992285329L;
 
     public static final QUser user = new QUser("user");
+
+    public final SetPath<Agent, QAgent> agents = this.<Agent, QAgent>createSet("agents", Agent.class, QAgent.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.util.Date> createdAt = createDateTime("createdAt", java.util.Date.class);
 
