@@ -3,6 +3,8 @@ spring:
         active: development
     datasource:
         initialize: true
+server:
+    port: 9999
 
 jwt:
    header: Authorization

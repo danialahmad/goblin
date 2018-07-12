@@ -2,6 +2,8 @@ package com.fourninja.goblin.model.entity;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +33,6 @@ public class Agent  implements java.io.Serializable {
      private Address address;
      private AgentType agentType;
      private Country country;
-     private User user;
      private String agentCode;
      private String name;
      private String idNumber;
@@ -42,6 +44,7 @@ public class Agent  implements java.io.Serializable {
      private String updatedBy;
      private Date updatedAt;
      private boolean actFlag;
+     private Set<User> users = new HashSet<User>(0);
 
     public Agent() {
     }
@@ -51,11 +54,10 @@ public class Agent  implements java.io.Serializable {
         this.onlineMode = onlineMode;
         this.actFlag = actFlag;
     }
-    public Agent(Address address, AgentType agentType, Country country, User user, String agentCode, String name, String idNumber, String email, String phoneNumber, boolean onlineMode, String createdBy, Date createdAt, String updatedBy, Date updatedAt, boolean actFlag) {
+    public Agent(Address address, AgentType agentType, Country country, String agentCode, String name, String idNumber, String email, String phoneNumber, boolean onlineMode, String createdBy, Date createdAt, String updatedBy, Date updatedAt, boolean actFlag, Set<User> users) {
        this.address = address;
        this.agentType = agentType;
        this.country = country;
-       this.user = user;
        this.agentCode = agentCode;
        this.name = name;
        this.idNumber = idNumber;
@@ -67,6 +69,7 @@ public class Agent  implements java.io.Serializable {
        this.updatedBy = updatedBy;
        this.updatedAt = updatedAt;
        this.actFlag = actFlag;
+       this.users = users;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -109,16 +112,6 @@ public class Agent  implements java.io.Serializable {
     
     public void setCountry(Country country) {
         this.country = country;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="username")
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
     }
 
     
@@ -229,6 +222,15 @@ public class Agent  implements java.io.Serializable {
     
     public void setActFlag(boolean actFlag) {
         this.actFlag = actFlag;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="agent")
+    public Set<User> getUsers() {
+        return this.users;
+    }
+    
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 

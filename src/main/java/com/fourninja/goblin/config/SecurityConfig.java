@@ -1,5 +1,7 @@
 package com.fourninja.goblin.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +16,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.fourninja.goblin.config.multi.MultiTenantFilter;
 import com.fourninja.goblin.security.jwt.JwtAuthenticationEntryPoint;
+import com.fourninja.goblin.security.jwt.JwtAuthenticationSuccessHandler;
 import com.fourninja.goblin.security.jwt.JwtAuthenticationTokenFilter;
 
 @Configuration
@@ -25,6 +31,9 @@ import com.fourninja.goblin.security.jwt.JwtAuthenticationTokenFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
+	
+	@Autowired
+	private JwtAuthenticationSuccessHandler successHandler;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -78,6 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/security/**").permitAll()
                 .anyRequest().authenticated();
 
+        httpSecurity.formLogin().successHandler(successHandler);
         // Custom JWT based security filter
         httpSecurity.addFilterBefore(multiTenantFilter(), UsernamePasswordAuthenticationFilter.class);
         httpSecurity
@@ -85,5 +95,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         // disable page caching
         httpSecurity.headers().cacheControl();
+        httpSecurity.cors().configurationSource(corsFilter());
     }
+    
+    @Bean
+	public CorsConfigurationSource corsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.setAllowedOrigins(Arrays.asList("*"));
+		config.setAllowedHeaders(Arrays.asList("Authorization", "content-type", "X-TENANT-ID",
+				"Access-Control-Allow-Methods",
+				"Access-Control-Allow-Headers",
+				"Access-Control-Allow-Origin"));
+		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+		source.registerCorsConfiguration("/**", config);
+//		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+//		bean.setOrder(0);
+		return source;
+	}
 }

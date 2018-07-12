@@ -52,7 +52,7 @@ public class QAgent extends EntityPathBase<Agent> {
 
     public final StringPath updatedBy = createString("updatedBy");
 
-    public final QUser user;
+    public final SetPath<User, QUser> users = this.<User, QUser>createSet("users", User.class, QUser.class, PathInits.DIRECT2);
 
     public QAgent(String variable) {
         this(Agent.class, forVariable(variable), INITS);
@@ -75,7 +75,6 @@ public class QAgent extends EntityPathBase<Agent> {
         this.address = inits.isInitialized("address") ? new QAddress(forProperty("address"), inits.get("address")) : null;
         this.agentType = inits.isInitialized("agentType") ? new QAgentType(forProperty("agentType")) : null;
         this.country = inits.isInitialized("country") ? new QCountry(forProperty("country")) : null;
-        this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 
 }

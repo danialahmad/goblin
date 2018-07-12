@@ -57,6 +57,19 @@ public class AuthenticationController {
         // Return the token
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
+    
+    @RequestMapping(value = "/security/validate-token", method = RequestMethod.GET)
+    public ResponseEntity<?> validatetoken(HttpServletRequest request){
+    	 String token = request.getHeader(tokenHeader);
+    	 boolean status=false;
+    	 if(null!=token){
+    		 token=token.substring(7);
+        	 String username = jwtTokenUtil.getUsernameFromToken(token);
+        	 final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        	 status=jwtTokenUtil.validateToken(token, userDetails);
+    	 }
+    	return ResponseEntity.ok(status);
+    }
 
     @RequestMapping(value = "/security/refresh-token", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {

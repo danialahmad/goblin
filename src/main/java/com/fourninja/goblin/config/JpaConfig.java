@@ -30,9 +30,9 @@ import com.fourninja.goblin.config.multi.TenantIdentifierResolver;
 import com.fourninja.goblin.model.dao.jdbc.DatasourceconfigDao;
 
 @Configuration
-@ComponentScan(basePackages="com.goblin.kemas.model",useDefaultFilters=false,includeFilters = @Filter(type = FilterType.ANNOTATION, classes=org.springframework.stereotype.Repository.class))
-@ComponentScan("com.goblin.kemas.model.dao.jdbc")
-@EnableJpaRepositories("com.goblin.kemas.model.repository")
+@ComponentScan(basePackages="com.fourninja.goblin.model",useDefaultFilters=false,includeFilters = @Filter(type = FilterType.ANNOTATION, classes=org.springframework.stereotype.Repository.class))
+@ComponentScan("com.fourninja.goblin.model.dao.jdbc")
+@EnableJpaRepositories("com.fourninja.goblin.model.repository")
 public class JpaConfig {
 
 	@Value("${db.username}")
@@ -116,7 +116,7 @@ public class JpaConfig {
 
 		// No dataSource is set to resulting entityManagerFactoryBean
 		LocalContainerEntityManagerFactoryBean result = new LocalContainerEntityManagerFactoryBean();
-		result.setPackagesToScan("com.goblin.kemas.model.entity");
+		result.setPackagesToScan("com.fourninja.goblin.model.entity");
 		HibernateJpaVendorAdapter vendor=new HibernateJpaVendorAdapter();
 		vendor.setShowSql(true);
 		vendor.setDatabasePlatform(dbDialect);

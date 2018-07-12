@@ -20,9 +20,9 @@ import com.fourninja.goblin.config.TransactionConfig;
 		ServiceConfig.class,
         SecurityConfig.class
 } )
-public class KemasBackendApplication {
+public class GoblinBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KemasBackendApplication.class, args);
+		SpringApplication.run(GoblinBackendApplication.class, args);
 	}
 }

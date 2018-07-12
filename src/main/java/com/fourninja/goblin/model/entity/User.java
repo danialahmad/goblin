@@ -2,13 +2,12 @@ package com.fourninja.goblin.model.entity;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +23,7 @@ public class User  implements java.io.Serializable {
 
 
      private String username;
+     private Agent agent;
      private String password;
      private String firstname;
      private String lastname;
@@ -37,7 +37,6 @@ public class User  implements java.io.Serializable {
      private String updatedBy;
      private Date updatedAt;
      private boolean enabled;
-     private Set<Agent> agents = new HashSet<Agent>(0);
 
     public User() {
     }
@@ -48,8 +47,9 @@ public class User  implements java.io.Serializable {
         this.password = password;
         this.enabled = enabled;
     }
-    public User(String username, String password, String firstname, String lastname, String email, Date lastLogin, String lastIp, Date lastPasswordResetDate, String timezone, String createdBy, Date createdAt, String updatedBy, Date updatedAt, boolean enabled, Set<Agent> agents) {
+    public User(String username, Agent agent, String password, String firstname, String lastname, String email, Date lastLogin, String lastIp, Date lastPasswordResetDate, String timezone, String createdBy, Date createdAt, String updatedBy, Date updatedAt, boolean enabled) {
        this.username = username;
+       this.agent = agent;
        this.password = password;
        this.firstname = firstname;
        this.lastname = lastname;
@@ -63,7 +63,6 @@ public class User  implements java.io.Serializable {
        this.updatedBy = updatedBy;
        this.updatedAt = updatedAt;
        this.enabled = enabled;
-       this.agents = agents;
     }
    
      @Id 
@@ -76,6 +75,16 @@ public class User  implements java.io.Serializable {
     
     public void setUsername(String username) {
         this.username = username;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="agent_id")
+    public Agent getAgent() {
+        return this.agent;
+    }
+    
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 
     
@@ -206,15 +215,6 @@ public class User  implements java.io.Serializable {
     
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
-    public Set<Agent> getAgents() {
-        return this.agents;
-    }
-    
-    public void setAgents(Set<Agent> agents) {
-        this.agents = agents;
     }
 
 

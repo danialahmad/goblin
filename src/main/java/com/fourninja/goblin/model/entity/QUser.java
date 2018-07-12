@@ -18,9 +18,11 @@ public class QUser extends EntityPathBase<User> {
 
     private static final long serialVersionUID = 992285329L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QUser user = new QUser("user");
 
-    public final SetPath<Agent, QAgent> agents = this.<Agent, QAgent>createSet("agents", Agent.class, QAgent.class, PathInits.DIRECT2);
+    public final QAgent agent;
 
     public final DateTimePath<java.util.Date> createdAt = createDateTime("createdAt", java.util.Date.class);
 
@@ -51,15 +53,24 @@ public class QUser extends EntityPathBase<User> {
     public final StringPath username = createString("username");
 
     public QUser(String variable) {
-        super(User.class, forVariable(variable));
+        this(User.class, forVariable(variable), INITS);
     }
 
     public QUser(Path<? extends User> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
     public QUser(PathMetadata<?> metadata) {
-        super(User.class, metadata);
+        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
+    }
+
+    public QUser(PathMetadata<?> metadata, PathInits inits) {
+        this(User.class, metadata, inits);
+    }
+
+    public QUser(Class<? extends User> type, PathMetadata<?> metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.agent = inits.isInitialized("agent") ? new QAgent(forProperty("agent"), inits.get("agent")) : null;
     }
 
 }
