@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public boolean registerNewUser(UserRequest userRequest) {
 		User user  =new User();
 		user.setUsername(userRequest.getUsername());
